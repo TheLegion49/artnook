@@ -1,0 +1,241 @@
+@import "tailwindcss";
+
+/* ========================================
+   THE ARTNOOK — Design System
+   ======================================== */
+
+/* Light mode (default) */
+:root {
+  --paper: #FFF6E5;
+  --paper-deep: #FBE9C6;
+  --ink: #2B1B3D;
+  --teal: #12A8A0;
+  --deep-sea: #0B5C73;
+  --marigold: #FFB627;
+  --coral: #FF6B5E;
+  --orchid: #B14AED;
+  --rose: #F7A8C4;
+  --mint: #8EE3C2;
+  --cobalt: #3A56E8;
+  --gold-leaf: #D4A63A;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --surface: var(--paper-deep);
+}
+
+/* Dark mode ("Midnight Studio") */
+.dark {
+  --paper: #1A1226;
+  --paper-deep: #261A38;
+  --ink: #FFF6E5;
+  --teal: #14C4BA;
+  --deep-sea: #0D7A99;
+  --marigold: #FFC640;
+  --coral: #FF8577;
+  --orchid: #C76EFF;
+  --rose: #FFC4DD;
+  --mint: #A5F0D4;
+  --cobalt: #5A76FF;
+  --gold-leaf: #E8BD4F;
+
+  --background: #1A1226;
+  --foreground: #FFF6E5;
+  --surface: #261A38;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --paper: #1A1226;
+    --paper-deep: #261A38;
+    --ink: #FFF6E5;
+    --teal: #14C4BA;
+    --deep-sea: #0D7A99;
+    --marigold: #FFC640;
+    --coral: #FF8577;
+    --orchid: #C76EFF;
+    --rose: #FFC4DD;
+    --mint: #A5F0D4;
+    --cobalt: #5A76FF;
+    --gold-leaf: #E8BD4F;
+
+    --background: #1A1226;
+    --foreground: #FFF6E5;
+    --surface: #261A38;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-teal: var(--teal);
+  --color-deep-sea: var(--deep-sea);
+  --color-marigold: var(--marigold);
+  --color-coral: var(--coral);
+  --color-orchid: var(--orchid);
+  --color-rose: var(--rose);
+  --color-mint: var(--mint);
+  --color-cobalt: var(--cobalt);
+  --color-gold-leaf: var(--gold-leaf);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-body: "DM Sans", "system-ui", sans-serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
+  --font-label: "Space Mono", "Courier New", monospace;
+}
+
+/* Base */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 3px solid var(--teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to content */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--marigold);
+  color: var(--ink);
+  font-weight: 700;
+  font-family: var(--font-body);
+  border: 2px solid var(--ink);
+  border-radius: 0 0 12px 12px;
+}
+
+.skip-to-content:focus {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--teal);
+  border-radius: 999px;
+  border: 2px solid var(--paper-deep);
+}
+
+/* Selection */
+::selection {
+  background: var(--marigold);
+  color: var(--ink);
+}
+
+/* Paper grain texture overlay */
+.paper-grain::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* Sticker shadow utility */
+.sticker-shadow {
+  box-shadow: 4px 4px 0 rgba(43, 27, 61, 0.9);
+}
+
+.sticker-shadow:active {
+  box-shadow: 2px 2px 0 rgba(43, 27, 61, 0.9);
+  transform: translate(2px, 2px);
+}
+
+/* Hand-drawn underline */
+.hand-underline {
+  text-decoration: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M2 8 C30 3, 60 10, 100 6 S170 3, 198 7' stroke='%2312A8A0' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 10px;
+  padding-bottom: 4px;
+}
+
+/* Washi tape */
+.washi-tape {
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  opacity: 0.7;
+  border-radius: 2px;
+}
+
+/* Torn paper divider */
+.torn-paper-top {
+  position: relative;
+}
+
+.torn-paper-top::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 20'%3E%3Cpath d='M0 20 L40 12 L80 18 L120 8 L160 16 L200 10 L240 17 L280 6 L320 15 L360 11 L400 19 L440 7 L480 14 L520 9 L560 18 L600 5 L640 16 L680 10 L720 17 L760 8 L800 15 L840 11 L880 19 L920 6 L960 14 L1000 12 L1040 18 L1080 7 L1120 16 L1160 9 L1200 20 Z' fill='var(--paper, %23FFF6E5)'/%3E%3C/svg%3E");
+  background-size: cover;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
